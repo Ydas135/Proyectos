@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Academia Multi-Disciplinaria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Vinculo al CSS externo -->
+    <link rel="stylesheet" href="../css/tienda.css">
+    <script src="../js/load-components.js"></script>
+    <style>
+        /* Estilos adicionales específicos para el selector de academias */
+        .selector-academias {
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .selector-academias label {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--color-primario);
+            font-weight: 500;
+        }
+
+        .selector-academias select {
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--borde-radio);
+            border: 2px solid var(--color-primario);
+            background-color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+
+        .selector-academias select:hover {
+            border-color: var(--color-secundario);
+            box-shadow: var(--sombra-suave);
+        }
+
+        .selector-academias select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+        }
+
+        .academia-contenido {
+            display: none;
+        }
+
+        .academia-contenido.activa {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="selector-academias">
+            <label for="academia-selector">Selecciona una academia:</label>
+            <select id="academia-selector" class="form-control">
+                <option value="">Selecciona una academia</option>
+                <option value="academias.html">Academia de Básquetbol</option>
+                <option value="Academia de Futbol.html">Academia de Fútbol</option>
+                <option value="Academia de Natacion.html">Academia de Natación</option>
+                <option value="Academia de Tenis.html">Academia de Tenis</option>
+                <option value="Academia de Voleibol.html">Academia de Voleibol</option>
+            </select>
+        </div>
+
+        <!-- Contenido de la academia de básquetbol -->
+        <section id="basquet" class="disciplina-basquet academia-contenido activa">
+            <h1>Academia de Básquetbol</h1>
+
+            <img src="../imagenes/basquet.jpg" alt="Entrenamiento de básquet" width="100%"
+                style="max-width:500px; border-radius: 10px; display:block; margin: auto;">
+
+            <p>
+                Nuestra Academia de Básquetbol está dirigida a niños, jóvenes y adultos apasionados por este deporte.
+                Contamos con entrenadores profesionales, instalaciones de primer nivel y un programa adaptado a
+                diferentes niveles de habilidad.
+            </p>
+
+            <h2>Horarios de Entrenamiento</h2>
+            <table class="tabla">
+                <tr>
+                    <th>Día</th>
+                    <th>Horario</th>
+                </tr>
+                <tr>
+                    <td>Lunes a Viernes</td>
+                    <td>4:00 p.m. - 6:00 p.m.</td>
+                </tr>
+                <tr>
+                    <td>Sábados</td>
+                    <td>9:00 a.m. - 12:00 p.m.</td>
+                </tr>
+            </table>
+
+            <h3>Ubicación</h3>
+            <p>Polideportivo Municipal - Av. Deportiva 123, Arequipa</p>
+
+            <h4>Inscripciones</h4>
+            <p>
+                Contáctanos al correo <a href="mailto:info@academiabasquet.com">info@academiabasquet.com</a>
+                o llama al <strong>987-987-987</strong>.
+            </p>
+
+            <h4>Video Demostrativo</h4>
+            <div class="videos-flex">
+                <div class="video-box">
+                    <video controls width="100%" autoplay muted>
+                        <source src="../videos/Academia.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plantilla para futuras academias -->
+        <!-- Contenido de la academia de fútbol -->
+        <!-- <section id="futbol" class="disciplina-basquet academia-contenido">
+
+        </section>
+
+        <section id="natacion" class="disciplina-basquet academia-contenido">
+            <h1>Academia de Natación</h1>
+            <p>Próximamente - Programa de natación competitiva y recreativa con instructores certificados.</p>
+        </section>
+
+        <section id="tenis" class="disciplina-basquet academia-contenido">
+            <h1>Academia de Tenis</h1>
+            <p>Próximamente - Clases de tenis para principiantes y avanzados en nuestras canchas profesionales.</p>
+        </section>
+
+        <section id="voleibol" class="disciplina-basquet academia-contenido">
+            <h1>Academia de Voleibol</h1>
+            <p>Próximamente - Entrenamiento de voleibol para jóvenes y adultos con metodología moderna.</p>
+        </section> -->
+    </main>
+
+    <script>
+        document.getElementById("academia-selector").addEventListener("change", function () {
+            const selectedPage = this.value;
+            if (selectedPage) {
+                window.location.href = selectedPage; // Redirige a la página seleccionada
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+/* Variables CSS para temas consistentes - facilitan cambios globales */
+:root {
+  --color-primario: #29112a;     /* Color principal para encabezados */
+  --color-secundario: #333;      /* Color secundario para pie de página */
+  --texto-claro: #fff;           /* Color de texto sobre fondos oscuros */
+  --texto-oscuro: #333;          /* Color de texto principal */
+  --borde-redondeado: 8px;       /* Radio para bordes redondeados */
+  --sombra: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Sombra estándar para elementos */
+  --espacio-pequeño: 0.5rem;     /* Espaciado pequeño (8px) */
+  --espacio-medio: 1rem;         /* Espaciado medio (16px) */
+  --espacio-grande: 2rem;        /* Espaciado grande (32px) */
+}
+
+/* Reinicio básico - elimina márgenes y rellenos predeterminados */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /* Hace que el ancho incluya padding y borde */
+}
+
+/* Estilos base para el cuerpo del documento */
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  line-height: 1.6;  /* Mejora la legibilidad del texto */
+  color: var(--texto-oscuro);
+}
+
+/* Efecto al pasar el ratón sobre los divs */
+div:hover {
+  border: 1px solid rgb(43, 0, 255);
+  transition: border-color 0.3s ease;  /* Suaviza la transición del borde */
+}
+
+/* Contenedor Grid Principal - estructura básica de la página */
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: auto 1fr auto;  /* Cabecera y pie automáticos, contenido flexible */
+  min-height: 100vh;  /* Ocupa al menos toda la altura de la ventana */
+}
+
+/* Estilos para el encabezado */
+.header {
+  grid-area: header;  /* Coloca el elemento en el área "header" del grid */
+  background: var(--color-primario);
+  color: var(--texto-claro);
+  padding: var(--espacio-medio);
+  display: flex;
+  justify-content: space-between;  /* Distribuye elementos horizontalmente */
+  align-items: center;  /* Centra elementos verticalmente */
+}
+
+/* Estilo para el logo */
+.logo {
+  width: 100px;
+}
+
+/* Estilos para los enlaces del menú */
+.menu a {
+  color: var(--texto-claro);
+  text-decoration: none;  /* Elimina el subrayado de los enlaces */
+  margin-left: var(--espacio-medio);
+  transition: color 0.3s ease;  /* Suaviza cambio de color al pasar el ratón */
+}
+
+.menu a:hover {
+  color: #ddd;  /* Color más claro al pasar el ratón */
+}
+
+/* Estilos para el contenido principal */
+.main {
+  grid-area: main;  /* Coloca el elemento en el área "main" del grid */
+  padding: var(--espacio-grande);
+}
+
+/* Estilos para el pie de página */
+.footer {
+  grid-area: footer;  /* Coloca el elemento en el área "footer" del grid */
+  background: var(--color-secundario);
+  color: var(--texto-claro);
+  text-align: center;
+  padding: var(--espacio-medio);
+  font-family: "Playwrite AU SA", cursive;
+  font-size: small;
+}
+
+/* Estilos para encabezados h1 */
+h1 {
+  font-family: "Special Gothic Condensed One", sans-serif;
+  font-size: 3rem;  /* Tamaño grande para títulos principales */
+  margin-bottom: var(--espacio-medio);
+  color: var(--color-primario);
+}
+
+/* Estilos para iconos de redes sociales */
+.redes-sociales img {
+  width: 30px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;  /* Suaviza la animación */
+}
+
+.redes-sociales img:hover {
+  transform: scale(1.1);  /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+/* Contenedor flexible para videos - organiza videos en fila */
+.videos-flex {
+  display: flex;
+  gap: var(--espacio-medio);
+  justify-content: center;
+  flex-wrap: wrap;  /* Permite que los elementos se ajusten en pantallas pequeñas */
+  margin-top: var(--espacio-grande);
+}
+
+/* Caja individual para cada video */
+.video-box {
+  flex: 1 1 45%;  /* Base flexible, pero máximo alrededor del 45% del ancho */
+  max-width: 500px;
+  border-radius: var(--borde-redondeado);
+  overflow: hidden;  /* Mantiene contenido dentro de los bordes redondeados */
+  box-shadow: var(--sombra);
+}
+
+/* Contenedor para artículos - organiza artículos en rejilla flexible */
+.articulos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-medio);
+  justify-content: space-between;
+  padding: var(--espacio-grande);
+}
+
+/* Estilo para cada artículo individual */
+.articulos div {
+  flex: 0 0 calc(33.33% - var(--espacio-medio));  /* Cada uno ocupa un tercio del espacio */
+  border: 1px solid #ccc;
+  padding: var(--espacio-medio);
+  box-shadow: var(--sombra);
+  border-radius: var(--borde-redondeado);
+  transition: transform 0.3s ease;  /* Suaviza la animación */
+}
+
+.articulos div:hover {
+  transform: translateY(-5px);  /* Eleva ligeramente el elemento al pasar el ratón */
+}
+
+/* Grupo de elementos de formulario - organiza etiquetas e inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;  /* Organiza elementos verticalmente */
+  gap: var(--espacio-pequeño);
+  margin-bottom: var(--espacio-medio);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Estilos para inputs de formulario */
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+/* Estilo para tarjetas informativas */
+.card {
+  background-color: #f9f9f9;
+  padding: var(--espacio-medio);
+  border-radius: var(--borde-redondeado);
+  box-shadow: var(--sombra);
+  text-align: center;
+  transition: transform 0.3s ease;  /* Suaviza la animación */
+}
+
+.card:hover {
+  transform: translateY(-5px);  /* Eleva ligeramente la tarjeta al pasar el ratón */
+}
+
+/* Rejilla para mostrar cursos - se adapta a diferentes tamaños de pantalla */
+.grid-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Columnas que se ajustan automáticamente */
+  gap: var(--espacio-grande);
+  margin-top: var(--espacio-grande);
+}
+
+/* Estilos para tablas */
+.tabla {
+  padding: var(--espacio-medio);
+  width: 100%;
+  border-collapse: separate;
+  border-radius: var(--borde-redondeado);
+  overflow: hidden;  /* Mantiene contenido dentro de los bordes redondeados */
+  box-shadow: var(--sombra);
+  margin-top: var(--espacio-medio);
+}
+
+/* Estilos para celdas de tabla */
+.tabla th, 
+.tabla td {
+  padding: 10px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Estilos para encabezados de tabla */
+.tabla th {
+  background-color: #e7e5e5;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Elimina la línea inferior en la última fila */
+.tabla tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .articulos div {
+    flex: 0 0 100%;  /* En pantallas pequeñas, cada artículo ocupa todo el ancho */
+  }
+  
+  .video-box {
+    flex: 1 1 100%;  /* Videos ocupan todo el ancho en móviles */
+  }
+  
+  h1 {
+    font-size: 2.5rem;  /* Títulos más pequeños en móviles */
+  }
+  
+  .header {
+    flex-direction: column;  /* Apila elementos del encabezado en móviles */
+    text-align: center;
+  }
+  
+  .menu {
+    margin-top: var(--espacio-pequeño);
+  }
+}

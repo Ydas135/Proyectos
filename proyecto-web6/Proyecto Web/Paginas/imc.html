@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora IMC - Sports & Defense</title>
+  <link rel="stylesheet" href="../css/tienda.css">
+  <link rel="stylesheet" href="../css/imc.css"> <!-- CSS específico para IMC -->
+  <script src="../js/load-components.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="grid-container">
+
+  <!-- Cuerpo Principal -->
+  <main class="main">
+    <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
+
+    <div class="mx-auto"><h2 class="gradiente"><b>Controla tu salud y estado físico</b></h2></div>
+
+    <!-- Sección de cálculo -->
+    <div class="imc-container">
+      <div class="imc-calculadora">
+        <div class="imc-form">
+          <div class="form-group">
+            <label for="altura">Altura (cm)</label>
+            <input type="number" id="altura" min="100" max="250" placeholder="Ej: 175">
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" id="peso" min="30" max="300" placeholder="Ej: 70">
+          </div>
+          <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" min="12" max="120" placeholder="Ej: 30">
+          </div>
+          <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select id="sexo">
+              <option value="hombre">Hombre</option>
+              <option value="mujer">Mujer</option>
+            </select>
+          </div>
+          <button id="calcular-btn" class="boton-primario">Calcular IMC</button>
+        </div>
+
+        <div class="imc-resultado">
+          <div class="resultado-header">
+            <h3>Tu Resultado</h3>
+            <div id="imc-valor" class="imc-valor">--.--</div>
+            <div id="imc-categoria" class="imc-categoria">Ingresa tus datos</div>
+          </div>
+          <div id="imc-descripcion" class="imc-descripcion">
+            El IMC es una medida que relaciona tu peso con tu altura. Proporciona una indicación general de si tu peso es saludable.
+          </div>
+          <div class="imc-recomendaciones">
+            <h4>Recomendaciones:</h4>
+            <ul id="recomendaciones-list">
+              <li>Ingresa tus datos para obtener recomendaciones personalizadas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos y estadísticas -->
+      <div class="imc-graficos">
+        <div class="grafico-container">
+          <canvas id="imcChart"></canvas>
+        </div>
+        <div class="imc-estadisticas">
+          <div class="estadistica-card">
+            <div class="estadistica-icon">📊</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="porcentaje-grasa">--%</div>
+              <div class="estadistica-titulo">Grasa corporal</div>
+            </div>
+          </div>
+          <div class="estadistica-card">
+            <div class="estadistica-icon">💪</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="masa-muscular">--%</div>
+              <div class="estadistica-titulo">Masa muscular</div>
+            </div>
+          </div>
+          <div class="estadistica-card">
+            <div class="estadistica-icon">💧</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="agua-corporal">--%</div>
+              <div class="estadistica-titulo">Agua corporal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de referencia IMC -->
+    <div class="imc-tabla">
+      <h3>Tabla de Referencia IMC</h3>
+      <div class="table-responsive">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>IMC</th>
+              <th>Categoría</th>
+              <th>Riesgo para la salud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Menos de 18.5</td>
+              <td>Bajo peso</td>
+              <td>Riesgo aumentado</td>
+            </tr>
+            <tr>
+              <td>18.5 - 24.9</td>
+              <td>Peso normal</td>
+              <td>Riesgo promedio</td>
+            </tr>
+            <tr>
+              <td>25.0 - 29.9</td>
+              <td>Sobrepeso</td>
+              <td>Riesgo aumentado</td>
+            </tr>
+            <tr>
+              <td>30.0 - 34.9</td>
+              <td>Obesidad grado I</td>
+              <td>Riesgo alto</td>
+            </tr>
+            <tr>
+              <td>35.0 - 39.9</td>
+              <td>Obesidad grado II</td>
+              <td>Riesgo muy alto</td>
+            </tr>
+            <tr>
+              <td>40 o más</td>
+              <td>Obesidad grado III</td>
+              <td>Riesgo extremadamente alto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="imc-info">
+      <div class="info-card">
+        <h3>¿Qué es el IMC?</h3>
+        <p>El Índice de Masa Corporal (IMC) es una medida que relaciona tu peso con tu altura. Es una herramienta útil para evaluar si tu peso está dentro de un rango saludable.</p>
+      </div>
+      <div class="info-card">
+        <h3>Limitaciones del IMC</h3>
+        <p>El IMC no distingue entre masa muscular y grasa corporal. Atletas con mucha masa muscular pueden tener un IMC alto sin tener exceso de grasa.</p>
+      </div>
+      <div class="info-card">
+        <h3>Consejos para un IMC saludable</h3>
+        <p>Mantén una dieta balanceada, realiza ejercicio regularmente y consulta con un profesional de la salud para un plan personalizado.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script para la calculadora -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elementos del DOM
+      const alturaInput = document.getElementById('altura');
+      const pesoInput = document.getElementById('peso');
+      const edadInput = document.getElementById('edad');
+      const sexoSelect = document.getElementById('sexo');
+      const calcularBtn = document.getElementById('calcular-btn');
+      const imcValor = document.getElementById('imc-valor');
+      const imcCategoria = document.getElementById('imc-categoria');
+      const imcDescripcion = document.getElementById('imc-descripcion');
+      const recomendacionesList = document.getElementById('recomendaciones-list');
+      const porcentajeGrasa = document.getElementById('porcentaje-grasa');
+      const masaMuscular = document.getElementById('masa-muscular');
+      const aguaCorporal = document.getElementById('agua-corporal');
+
+      // Configuración del gráfico
+      const ctx = document.getElementById('imcChart').getContext('2d');
+      const imcChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Grasa', 'Músculo', 'Agua', 'Otros'],
+          datasets: [{
+            data: [25, 35, 15, 25],
+            backgroundColor: [
+              '#e63946',
+              '#2a9d8f',
+              '#457b9d',
+              '#f8f9fa'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                boxWidth: 12,
+                padding: 20,
+                font: {
+                  size: 12
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `${context.label}: ${context.raw}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Función para calcular IMC
+      function calcularIMC() {
+        const altura = parseFloat(alturaInput.value) / 100; // Convertir cm a m
+        const peso = parseFloat(pesoInput.value);
+        const edad = parseInt(edadInput.value);
+        const sexo = sexoSelect.value;
+
+        if (!altura || !peso || !edad) {
+          alert('Por favor completa todos los campos');
+          return;
+        }
+
+        const imc = peso / (altura * altura);
+        const imcRedondeado = imc.toFixed(1);
+
+        // Actualizar resultado
+        imcValor.textContent = imcRedondeado;
+        
+        // Determinar categoría
+        let categoria = '';
+        let descripcion = '';
+        let recomendaciones = [];
+        let color = '';
+
+        if (imc < 18.5) {
+          categoria = 'Bajo peso';
+          descripcion = 'Tu peso está por debajo de lo considerado saludable para tu altura.';
+          recomendaciones = [
+            'Consulta con un nutricionista para un plan de aumento de peso saludable',
+            'Incorpora ejercicios de fuerza para ganar masa muscular',
+            'Asegúrate de consumir suficientes calorías y nutrientes'
+          ];
+          color = '#ffd166';
+        } else if (imc >= 18.5 && imc < 25) {
+          categoria = 'Peso normal';
+          descripcion = '¡Felicidades! Tu peso está dentro del rango considerado saludable.';
+          recomendaciones = [
+            'Mantén una dieta balanceada y variada',
+            'Continúa con tu rutina de ejercicio regular',
+            'Realiza chequeos médicos periódicos'
+          ];
+          color = '#2a9d8f';
+        } else if (imc >= 25 && imc < 30) {
+          categoria = 'Sobrepeso';
+          descripcion = 'Tu peso está por encima del rango considerado saludable para tu altura.';
+          recomendaciones = [
+            'Considera aumentar tu actividad física diaria',
+            'Reduce el consumo de alimentos procesados y azúcares',
+            'Consulta con un profesional para un plan personalizado'
+          ];
+          color = '#e9c46a';
+        } else if (imc >= 30 && imc < 35) {
+          categoria = 'Obesidad grado I';
+          descripcion = 'Tu peso indica obesidad grado I, lo que puede aumentar el riesgo de problemas de salud.';
+          recomendaciones = [
+            'Consulta con un médico para evaluar tu salud',
+            'Inicia un plan de alimentación saludable supervisado',
+            'Comienza con actividad física moderada y aumenta gradualmente'
+          ];
+          color = '#f4a261';
+        } else if (imc >= 35 && imc < 40) {
+          categoria = 'Obesidad grado II';
+          descripcion = 'Tu peso indica obesidad grado II, con riesgo alto de problemas de salud.';
+          recomendaciones = [
+            'Busca atención médica profesional',
+            'Considera un programa de pérdida de peso supervisado',
+            'Incorpora actividad física adaptada a tus capacidades'
+          ];
+          color = '#e76f51';
+        } else {
+          categoria = 'Obesidad grado III';
+          descripcion = 'Tu peso indica obesidad grado III, con riesgo muy alto de problemas de salud.';
+          recomendaciones = [
+            'Consulta urgentemente con un médico especialista',
+            'Sigue un tratamiento médico supervisado',
+            'Considera apoyo psicológico y nutricional integral'
+          ];
+          color = '#e63946';
+        }
+
+        imcCategoria.textContent = categoria;
+        imcCategoria.style.color = color;
+        imcDescripcion.textContent = descripcion;
+
+        // Actualizar recomendaciones
+        recomendacionesList.innerHTML = '';
+        recomendaciones.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          recomendacionesList.appendChild(li);
+        });
+
+        // Calcular composición corporal estimada (simulación)
+        let grasa, musculo, agua;
+        
+        if (sexo === 'hombre') {
+          grasa = 1.20 * imc + 0.23 * edad - 16.2;
+          musculo = 0.45 * imc + 0.15 * edad + 30;
+          agua = 0.35 * imc + 0.12 * edad + 40;
+        } else {
+          grasa = 1.20 * imc + 0.23 * edad - 5.4;
+          musculo = 0.35 * imc + 0.10 * edad + 25;
+          agua = 0.30 * imc + 0.10 * edad + 45;
+        }
+
+        // Ajustar valores para que sumen ~100%
+        const total = grasa + musculo + agua;
+        grasa = (grasa / total * 70).toFixed(1);
+        musculo = (musculo / total * 70).toFixed(1);
+        agua = (agua / total * 70).toFixed(1);
+        const otros = (100 - grasa - musculo - agua).toFixed(1);
+
+        // Actualizar estadísticas
+        porcentajeGrasa.textContent = `${grasa}%`;
+        masaMuscular.textContent = `${musculo}%`;
+        aguaCorporal.textContent = `${agua}%`;
+
+        // Actualizar gráfico
+        imcChart.data.datasets[0].data = [grasa, musculo, agua, otros];
+        imcChart.update();
+      }
+
+      // Event listener para el botón de cálculo
+      calcularBtn.addEventListener('click', calcularIMC);
+
+      // También calcular al presionar Enter en cualquier campo
+      [alturaInput, pesoInput, edadInput, sexoSelect].forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            calcularIMC();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
