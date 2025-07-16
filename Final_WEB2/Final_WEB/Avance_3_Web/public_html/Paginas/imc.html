@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora IMC - Sports & Defense</title>
+  <link rel="stylesheet" href="../css/styles.css"> <!-- Estilos base, header, footer -->
+  <link rel="stylesheet" href="../css/utilidades.css"> <!-- Clases para botones y tablas -->
+  <link rel="stylesheet" href="../css/responsive.css"> <!-- Media queries -->
+  <link rel="stylesheet" href="../css/imc.css"> <!-- CSS específico para IMC -->
+  <script src="../js/load-components.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="grid-container">
+
+  <!-- Cuerpo Principal -->
+  <main class="main">
+    <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
+
+    <div class="mx-auto"><h2 class="gradiente"><b>Controla tu salud y estado físico</b></h2></div>
+
+    <!-- Sección de cálculo -->
+    <div class="imc-container">
+      <div class="imc-calculadora">
+        <div class="imc-form">
+          <div class="form-group">
+            <label for="altura">Altura (cm)</label>
+            <input type="number" id="altura" min="100" max="250" placeholder="Ej: 175">
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" id="peso" min="30" max="300" placeholder="Ej: 70">
+          </div>
+          <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" min="12" max="120" placeholder="Ej: 30">
+          </div>
+          <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select id="sexo">
+              <option value="hombre">Hombre</option>
+              <option value="mujer">Mujer</option>
+            </select>
+          </div>
+          <button id="calcular-btn" class="boton-primario">Calcular IMC</button>
+        </div>
+
+        <div class="imc-resultado">
+          <div class="resultado-header">
+            <h3>Tu Resultado</h3>
+            <div id="imc-valor" class="imc-valor">--.--</div>
+            <div id="imc-categoria" class="imc-categoria">Ingresa tus datos</div>
+          </div>
+          <div id="imc-descripcion" class="imc-descripcion">
+            El IMC es una medida que relaciona tu peso con tu altura. Proporciona una indicación general de si tu peso es saludable.
+          </div>
+          <div class="imc-recomendaciones">
+            <h4>Recomendaciones:</h4>
+            <ul id="recomendaciones-list">
+              <li>Ingresa tus datos para obtener recomendaciones personalizadas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos y estadísticas -->
+      <div class="imc-graficos">
+        <div class="grafico-container">
+          <canvas id="imcChart"></canvas>
+        </div>
+        <div class="imc-estadisticas">
+          <div class="estadistica-card">
+            <div class="estadistica-icon">📊</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="porcentaje-grasa">--%</div>
+              <div class="estadistica-titulo">Grasa corporal</div>
+            </div>
+          </div>
+          <div class="estadistica-card">
+            <div class="estadistica-icon">💪</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="masa-muscular">--%</div>
+              <div class="estadistica-titulo">Masa muscular</div>
+            </div>
+          </div>
+          <div class="estadistica-card">
+            <div class="estadistica-icon">💧</div>
+            <div class="estadistica-info">
+              <div class="estadistica-valor" id="agua-corporal">--%</div>
+              <div class="estadistica-titulo">Agua corporal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de referencia IMC -->
+    <div class="imc-tabla">
+      <h3>Tabla de Referencia IMC</h3>
+      <div class="table-responsive">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>IMC</th>
+              <th>Categoría</th>
+              <th>Riesgo para la salud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Menos de 18.5</td>
+              <td>Bajo peso</td>
+              <td>Riesgo aumentado</td>
+            </tr>
+            <tr>
+              <td>18.5 - 24.9</td>
+              <td>Peso normal</td>
+              <td>Riesgo promedio</td>
+            </tr>
+            <tr>
+              <td>25.0 - 29.9</td>
+              <td>Sobrepeso</td>
+              <td>Riesgo aumentado</td>
+            </tr>
+            <tr>
+              <td>30.0 - 34.9</td>
+              <td>Obesidad grado I</td>
+              <td>Riesgo alto</td>
+            </tr>
+            <tr>
+              <td>35.0 - 39.9</td>
+              <td>Obesidad grado II</td>
+              <td>Riesgo muy alto</td>
+            </tr>
+            <tr>
+              <td>40 o más</td>
+              <td>Obesidad grado III</td>
+              <td>Riesgo extremadamente alto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="imc-info">
+      <div class="info-card">
+        <h3>¿Qué es el IMC?</h3>
+        <p>El Índice de Masa Corporal (IMC) es una medida que relaciona tu peso con tu altura. Es una herramienta útil para evaluar si tu peso está dentro de un rango saludable.</p>
+      </div>
+      <div class="info-card">
+        <h3>Limitaciones del IMC</h3>
+        <p>El IMC no distingue entre masa muscular y grasa corporal. Atletas con mucha masa muscular pueden tener un IMC alto sin tener exceso de grasa.</p>
+      </div>
+      <div class="info-card">
+        <h3>Consejos para un IMC saludable</h3>
+        <p>Mantén una dieta balanceada, realiza ejercicio regularmente y consulta con un profesional de la salud para un plan personalizado.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script para la calculadora -->
+  <script src="../js/Imc.js"></script>
+</body>
+</html>

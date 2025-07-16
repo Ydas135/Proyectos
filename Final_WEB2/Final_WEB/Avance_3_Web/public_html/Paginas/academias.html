@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Academia Multi-Disciplinaria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Vinculo al CSS externo -->
+    <link rel="stylesheet" href="../css/styles.css"> <!-- Estilos base, header, footer -->
+    <link rel="stylesheet" href="../css/utilidades.css"> <!-- Para tablas y formularios -->
+    <link rel="stylesheet" href="../css/responsive.css"> <!-- Media queries -->
+    <script src="../js/load-components.js"></script>
+    <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/Selector academias.css">
+</head>
+
+<body>
+    <main class="main">
+        <div class="selector-academias">
+            <label for="academia-selector">Selecciona una academia:</label>
+            <select id="academia-selector" class="form-control">
+                <option value="">Selecciona una academia</option>
+                <option value="academias.html">Academia de Básquetbol</option>
+                <option value="Academia de Futbol.html">Academia de Fútbol</option>
+                <option value="Academia de Natacion.html">Academia de Natación</option>
+                <option value="Academia de Tenis.html">Academia de Tenis</option>
+                <option value="Academia de Voleibol.html">Academia de Voleibol</option>
+            </select>
+        </div>
+
+        <!-- Contenido de la academia de básquetbol -->
+        <section id="basquet" class="disciplina-basquet academia-contenido activa">
+            <h1>Academia de Básquetbol</h1>
+
+            <img src="../imagenes/basquet.jpg" alt="Entrenamiento de básquet" width="100%"
+                style="max-width:500px; border-radius: 10px; display:block; margin: auto;">
+
+            <p>
+                Nuestra Academia de Básquetbol está dirigida a niños, jóvenes y adultos apasionados por este deporte.
+                Contamos con entrenadores profesionales, instalaciones de primer nivel y un programa adaptado a
+                diferentes niveles de habilidad.
+            </p>
+
+            <h2>Horarios de Entrenamiento</h2>
+            <table class="tabla">
+                <tr>
+                    <th>Día</th>
+                    <th>Horario</th>
+                </tr>
+                <tr>
+                    <td>Lunes a Viernes</td>
+                    <td>4:00 p.m. - 6:00 p.m.</td>
+                </tr>
+                <tr>
+                    <td>Sábados</td>
+                    <td>9:00 a.m. - 12:00 p.m.</td>
+                </tr>
+            </table>
+
+            <h3>Ubicación</h3>
+            <p>📍Polideportivo Municipal - Av. Deportiva 123, Arequipa</p>
+            <h4>Video Demostrativo</h4>
+            <div class="videos-flex">
+                <div class="video-box">
+                    <video controls width="100%" autoplay muted>
+                        <source src="../videos/Academia.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("academia-selector").addEventListener("change", function () {
+            const selectedPage = this.value;
+            if (selectedPage) {
+                window.location.href = selectedPage; // Redirige a la página seleccionada
+            }
+        });
+    </script>
+
+</body>
+
+</html>
