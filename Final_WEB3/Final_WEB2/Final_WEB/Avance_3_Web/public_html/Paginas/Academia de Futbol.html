@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Academia de Fútbol | Sports & Defense</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Academia de fútbol profesional para todas las edades y niveles" />
+    <link rel="stylesheet" href="../css/tienda.css" />
+    <script src="../js/load-components.js" defer></script>
+    <link rel="stylesheet" href="../css/Selector academias.css" />
+</head>
+
+<body class="pagina-academia">
+    <main class="main contenido-principal">
+        <div class="selector-academias">
+            <label for="academia-selector">Selecciona una academia:</label>
+            <select id="academia-selector" class="form-control">
+                <option value="">Selecciona una academia</option>
+                <option value="academias.html">Academia de Básquetbol</option>
+                <option value="Academia de Futbol.html" selected>
+                    Academia de Fútbol
+                </option>
+                <option value="Academia de Natacion.html">
+                    Academia de Natación
+                </option>
+                <option value="Academia de Tenis.html">Academia de Tenis</option>
+                <option value="Academia de Voleibol.html">
+                    Academia de Voleibol
+                </option>
+            </select>
+        </div>
+
+        <section id="futbol" class="disciplina-futbol disciplina-basquet academia-contenido activa">
+            <h1 class="titulo-principal">Academia de Fútbol</h1>
+
+            <div class="imagen-destacada">
+                <img src="../imagenes/futbol.jpg" alt="Entrenamiento de fútbol" class="img-fluid"
+                    style="max-width: 100%; border-radius: var(--borde-radio)" />
+                <p class="leyenda-imagen">Entrenamiento profesional de fútbol</p>
+            </div>
+
+            <div class="descripcion">
+                <p class="texto-descripcion">
+                    Nuestra Academia de Fútbol forma jugadores integrales con técnicas
+                    modernas. Programas para todas las edades y niveles, con metodología
+                    basada en estándares FIFA.
+                </p>
+
+                <div class="beneficios">
+                    <h3 class="subtitulo">Beneficios de nuestra academia:</h3>
+                    <ul class="lista-beneficios">
+                        <li>Entrenadores certificados por la FIFA</li>
+                        <li>Instalaciones de primer nivel</li>
+                        <li>Metodología personalizada por edades</li>
+                        <li>Programas de desarrollo técnico y táctico</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="horarios">
+                <h2 class="subtitulo-seccion">Horarios de Entrenamiento</h2>
+                <table class="tabla tabla-horarios">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Horario</th>
+                            <th>Categoría</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lunes y Miércoles</td>
+                            <td>3:00 p.m. - 5:00 p.m.</td>
+                            <td>Juveniles (13-17 años)</td>
+                        </tr>
+                        <tr>
+                            <td>Martes y Jueves</td>
+                            <td>4:00 p.m. - 6:00 p.m.</td>
+                            <td>Infantiles (6-12 años)</td>
+                        </tr>
+                        <tr>
+                            <td>Sábados</td>
+                            <td>8:00 a.m. - 11:00 a.m.</td>
+                            <td>Todas las categorías</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="multimedia promocion">
+                <h4 class="subtitulo-seccion">Video Demostrativo</h4>
+                <div class="contenedor-video video-box">
+                    <video controls width="100%" autoplay muted playsinline class="video-demo">
+                        <source src="../videos/futbol.mp4" type="video/mp4" />
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+         document.getElementById("academia-selector").addEventListener("change", function () {
+            const selectedPage = this.value;
+            if (selectedPage) {
+                window.location.href = selectedPage; // Redirige a la página seleccionada
+            }
+        });
+    </script>
+</body>
+
+</html>

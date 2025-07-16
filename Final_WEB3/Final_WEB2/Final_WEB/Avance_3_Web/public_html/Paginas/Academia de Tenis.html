@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Academia Multi-Disciplinaria - Tenis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Vinculo al CSS externo -->
+    <link rel="stylesheet" href="../css/tienda.css">
+    <script src="../js/load-components.js"></script>
+    <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/Selector academias.css">
+</head>
+
+<body>
+    <main class="main">
+        <div class="selector-academias">
+            <label for="academia-selector">Selecciona una academia:</label>
+            <select id="academia-selector" class="form-control">
+                <option value="">Selecciona una academia</option>
+                <option value="academias.html">Academia de Básquetbol</option>
+                <option value="Academia de Futbol.html">Academia de Fútbol</option>
+                <option value="Academia de Natacion.html">Academia de Natación</option>
+                <option value="Academia de Tenis.html" selected>Academia de Tenis</option>
+                <option value="Academia de Voleibol.html">Academia de Voleibol</option>
+            </select>
+        </div>
+
+        <!-- Contenido de la academia de tenis -->
+        <section id="tenis" class="disciplina-tenis academia-contenido activa">
+            <h1>Academia de Tenis</h1>
+
+            <img src="../imagenes/tenis.jpg" alt="Entrenamiento de tenis" class="disciplina-imagen"width="100%"
+                style="max-width:500px; border-radius: 10px; display:block; margin: auto;">
+
+            <p class="disciplina-descripcion">
+                Entrenamiento personalizado en canchas de arcilla y cemento.
+                Desarrollamos técnica, estrategia y preparación física.
+            </p>
+
+            <h2>Horarios de Entrenamiento</h2>
+            <table class="tabla">
+                <tr>
+                    <th>Día</th>
+                    <th>Horario</th>
+                </tr>
+                <tr>
+                    <td>Lunes a Viernes</td>
+                    <td>4:00 p.m. - 7:00 p.m.</td>
+                </tr>
+                <tr>
+                    <td>Sábados</td>
+                    <td>9:00 a.m. - 12:00 p.m.</td>
+                </tr>
+            </table>
+
+            <h3>Ubicación</h3>
+            <p class="disciplina-ubicacion">📍Club de Tenis Arequipa - Av. Racquet 789, Arequipa</p>
+
+            <h4>Video Demostrativo</h4>
+            <div class="videos-flex">
+                <div class="video-box">
+                    <video controls width="100%" autoplay muted>
+                        <source src="../videos/tenis.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("academia-selector").addEventListener("change", function () {
+            const selectedPage = this.value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        });
+    </script>
+</body>
+
+</html>
