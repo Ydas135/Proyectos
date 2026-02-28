@@ -1,0 +1,23 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+    "scripts": {
+    "build:styles": "npx @tailwindcss/cli -i ./input.css -o ./styles/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ydas135/Proyectos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ydas135/Proyectos/issues"
+  },
+  "homepage": "https://github.com/Ydas135/Proyectos#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}
